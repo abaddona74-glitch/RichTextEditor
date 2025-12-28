@@ -1,0 +1,12 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run on Emulator (build→install→start)",
+      "request": "launch",
+      "program": "${workspaceFolder}/.vscode/run_helper.js",
+      "console": "integratedTerminal",
+      "preLaunchTask": "Run On Emulator (compound)"
+    }
+  ]
+}

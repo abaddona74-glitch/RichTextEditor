@@ -1,0 +1,39 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "Start Emulator",
+      "type": "shell",
+      "command": "start \"\" \"${env:ANDROID_SDK_ROOT}\\emulator\\emulator.exe\" -avd Pixel_9_Pro -no-snapshot-load -gpu auto",
+      "problemMatcher": [],
+      "presentation": { "reveal": "silent", "panel": "shared" }
+    },
+    {
+      "label": "Build APK",
+      "type": "shell",
+      "command": ".\\gradlew.bat assembleDebug",
+      "options": { "cwd": "${workspaceFolder}" },
+      "problemMatcher": ["$msCompile"],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Install & Run",
+      "type": "shell",
+      "command": "${workspaceFolder}\\.vscode\\install_and_run.ps1 \"${workspaceFolder}\"",
+      "options": {
+        "cwd": "${workspaceFolder}",
+        "shell": {
+          "executable": "C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe",
+          "args": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File"]
+        }
+      },
+      "problemMatcher": [],
+      "presentation": { "reveal": "always", "panel": "shared" }
+    },
+    {
+      "label": "Run On Emulator (compound)",
+      "dependsOn": ["Start Emulator", "Build APK", "Install & Run"],
+      "dependsOrder": "sequence"
+    }
+  ]
+}
